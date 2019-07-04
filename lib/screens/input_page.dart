@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
-
-const bottomContainerHeight = 70.0;
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/screens/results_page.dart';
+import 'package:bmi_calculator/components/buttons_bottom.dart';
+import 'package:bmi_calculator/components/rounded_buttons.dart';
 
 enum GenderType {
   male,
@@ -31,6 +32,7 @@ class _InputPageState extends State<InputPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          // Genders widget
           Expanded(
             child: Row(
               children: <Widget>[
@@ -69,7 +71,7 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          // Weight widget
+          // Height widget
           Expanded(
             child: new RefCard(
               color: kActiveCardColor,
@@ -122,6 +124,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
           ),
+          // Weight & Age widget
           Expanded(
             child: Row(
               children: <Widget>[
@@ -214,36 +217,17 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomCardColor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: bottomContainerHeight,
+          BottomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultsPage()),
+              );
+            },
           ),
         ],
       ),
-    );
-  }
-}
-
-// New style buttons for Weight and age
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, @required this.onPressed});
-
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      elevation: 0.0,
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      shape: CircleBorder(),
-//      Another way of making buttons
-//      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }

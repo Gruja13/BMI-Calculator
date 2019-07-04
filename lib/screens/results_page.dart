@@ -14,15 +14,18 @@ class ResultsPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
+          // Result title
           Expanded(
             child: Container(
-              padding: EdgeInsets.only(left: 20.0),
+              padding: EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
               child: Text(
                 'Your Result',
                 style: kTitleFontSize,
               ),
             ),
           ),
+          // Result text
           Expanded(
             flex: 5,
             child: RefCard(
@@ -48,6 +51,7 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
           ),
+          // Re-calculate button
           BottomButton(
             buttonTitle: 'RE-CALCULATE',
             onTap: () {
